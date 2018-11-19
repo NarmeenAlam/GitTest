@@ -1,0 +1,535 @@
+//clear screen function?
+//winner?
+//number of players, problem?
+#include <stdio.h>
+#include<iostream>
+#include<iomanip>  //for setw(); //for gotoxy
+#include<stdlib.h>
+#include<ctime>
+#include<windows.h>
+#include<time.h>
+#include<conio.h> //clear screen function
+using namespace std;
+void selection(int opt,int op);
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+void txt(int);
+void letter(int);
+void number(int);
+void exit(void);
+void stletter(int);
+void stnumber(int);
+void sttxt(int);
+int players();
+class infoofplayers{
+ public:
+  string name;
+  int age;
+  double elapsed_time;
+  double x;
+ public:
+  void setname(string name){
+   this->name=name;
+  }
+  void setage(int age){
+   this->age=age;
+  }
+  void display(){
+   cout<<name<<"\t"<<age<<endl;
+  }
+  gotoxy(int x, int y) //for letter part.
+{
+         cout<<setw(x);  //horizontal
+       for(;y>0;y--)   //vertical
+        cout<<endl;
+ }
+ 
+int start(){
+ char ch;
+    system("COLOR 3C");
+    //cout<<"Welcome to the color changing application!\n"<<endl;
+    //cout<<"Press any key to change the background color!\n"<<endl;
+    //cin>>ch;
+    system("COLOR 0C");
+    //cout<<"Now the background color is Yellow and Text Color is light Red\n"<<endl;
+    //cout<<"Press any key to exit..."<<endl;
+    //cin>>ch;
+ 
+ cout<<"TYPING TUTOR"<<endl;
+ int option;
+ cout<<"enter the level you want to play"<<endl;
+ cout<<"1) EASY"<<endl;
+ cout<<"2)MEDIUM"<<endl;
+ cout<<"3)DIFFICULT"<<endl;
+ cin>>option;
+ return option;
+}
+void play(int op){
+ int opt;
+ double x;
+ switch(op){
+  case 1:
+   cout<<"ENTER OPTION TO PLAY"<<endl;
+   cout<<"1)TEXT TYPING"<<endl;
+   cout<<"2)LETTER TYPING"<<endl;
+   cout<<"3)NUMBER TYPING"<<endl;
+   cout<<"4)EXIT"<<endl;
+   cin>>opt;
+   selection(opt,op);
+   break;
+ case 2:
+  cout<<"ENTER OPTION TO PLAY"<<endl;
+   cout<<"1)TEXT TYPING"<<endl;
+   cout<<"2)LETTER TYPING"<<endl;
+   cout<<"3)NUMBER TYPING"<<endl;
+   cout<<"4)EXIT"<<endl;
+   cin>>opt;
+   selection(opt,op);
+   break;
+ case 3:
+  cout<<"ENTER OPTION TO PLAY"<<endl;
+   cout<<"1)TEXT TYPING"<<endl;
+   cout<<"2)LETTER TYPING"<<endl;
+   cout<<"3)NUMBER TYPING"<<endl;
+   cout<<"4)EXIT"<<endl;
+   cin>>opt;
+   selection(opt,op);
+   break;
+}
+Sleep(300);
+system("cls");
+}
+void selection(int opt,int op){
+ double x;
+ switch(opt){
+  case 1:
+   txt(op);
+   break;
+  case 2:
+   letter(op);
+   break;
+  case 3:
+   number(op);
+   break;
+  case 4:
+   exit();
+   break;
+ }
+ Sleep(300);
+ system("cls");
+}
+void exit(){
+ cout<<"thankyou for playing!"<<endl;
+     MessageBox(NULL, "Goodbye!", "End", MB_OK);
+     system("cls");
+}
+void txt(int op){
+ char ch;
+ cout<<"START GAME?"<<endl;
+ cout<<"ARE YOU READY?"<<endl;
+ cout<<"Y/y FOR YES | N/n FOR NO"<<endl;
+ cin>>ch;
+ switch(ch){
+  case 'y':
+  case 'Y':
+   sttxt(op); //start playing;
+   break;
+  case 'N':
+  case 'n':
+   exit();
+   break;
+ }
+ Sleep(300);
+ system("cls");
+}
+void letter(int op){
+ char ch;
+ cout<<"START GAME?"<<endl;
+ cout<<"ARE YOU READY?"<<endl;
+ cout<<"Y/y FOR YES | N/n FOR NO"<<endl;
+ cin>>ch;
+ switch(ch){
+  case 'y':
+  case 'Y':
+   stletter(op);
+   break;
+  case 'N':
+  case 'n':
+   exit();
+   break;
+ }
+ Sleep(300);
+ system("cls");
+}
+void number(int op){
+ char ch;
+ double x;
+ cout<<"START GAME?"<<endl;
+ cout<<"ARE YOU READY?"<<endl;
+ cout<<"Y/y FOR YES | N/n FOR NO"<<endl;
+ cin>>ch;
+ switch(ch){
+  case 'y':
+  case 'Y':
+   stnumber(op);
+   break;
+  case 'N':
+  case 'n':
+   exit();
+   break;
+ }
+ Sleep(300);
+ system("cls");
+}
+void stnumber(int op){
+ int input;
+ double x;
+ clock_t begin = clock(); //clock time begins
+ if(op==1){ //seleccted option is executed
+  for(int i=0;i<10;i++){
+  typenumagain:
+ int x=rand()%20; //generate random int type number
+ cout<<x<<endl;
+ cin>>input; //taking input in random type number
+ if(x!=input){ //check if input number, is not equal to randomly generated number
+  cout<<"you did not entered the correct number!";
+  cout<<"\n"<<"TYPE AGAIN!"<<endl;
+  goto typenumagain; //if randomly generated number is not equal to input number, then goto and generate another random number
+ }
+ //sleep(600); //causes delay.
+ }
+ clock_t end = clock(); //clock time finish
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout<<elapsed_secs<<"sec"<<endl; //as causes delay of 2 sec, display of secounds consumed.
+     x=elapsed_secs;
+ } 
+ 
+ else if(op==2){
+  float input;
+  clock_t begin = clock(); //clock time begin
+  for(int i=0;i<10;i++){
+  typenumagain1:
+ float x=rand()%1000; //for level 2, float value has a range of 1000
+ cout<<x<<endl;
+ cin>>input;
+ if(x!=input){ //if input is not equal to randomly generated number, then generate a random number again.
+  cout<<"you did not entered the correct number!";
+  cout<<"\n"<<"TYPE AGAIN!"<<endl;
+  goto typenumagain1;
+ }
+ //sleep(500); //causes delay.
+ }
+ clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout<<elapsed_secs<<"sec"<<endl; //as causes delay of 2 sec
+  x=elapsed_secs;
+ } 
+ 
+ else if(op==3){ //for difficult gotoxy and double value is used.
+  double z;
+  double input;
+  clock_t begin = clock();
+  for(int i=0;i<10;i++){
+  int x=rand()%100; //random values for x and y cordinates.
+ int y=rand()%55;
+     gotoxy(x,y);
+  typenumagain2:
+  x=rand()%2000; //random number being generated.
+ cout<<z<<endl;
+ cin>>input;
+ if(z!=input){
+  cout<<"you did not entered the correct number!";
+  cout<<"\n"<<"TYPE AGAIN!"<<endl;
+  goto typenumagain2; //if generated random number is not equal to input, then generate random number again.
+ }
+ //sleep(300); //causes delay.
+ }
+ clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout<<elapsed_secs<<"sec"<<endl; //as causes delay of 2 sec
+     double x=elapsed_secs;
+   
+ }
+ Sleep(300);
+ system("cls");
+}
+//*****************************number part finished****************
+void stletter(int op){
+ int i;
+ if(op==1){
+ char character;
+     clock_t begin = clock();
+    for(int i=0;i<10;i++){
+ 
+ int x=rand()%100; //random values for x and y cordinates.
+ int y=rand()%55;
+     gotoxy(x,y);
+     char ch;
+ int n;
+ again:
+     n= rand()%26; //letter start point
+ ch=(char)(n+65); //letter Z asci code //for capital letters
+ cout<<ch<<endl;
+ cin>>character;
+ if(ch!=character){
+  cout<<"you did not entered the correct letter!";
+  cout<<"\n"<<"TYPE AGAIN!"<<endl;
+  goto again;
+ }
+  Sleep(200);//causing time delay
+  }
+   clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout<<elapsed_secs<<"sec"<<endl; //as caused delay of 2 sec
+ }
+else if(op==2){
+  char character;
+        clock_t begin = clock();
+       for(int i=0;i<10;i++){
+ 
+ int x=rand()%100; //random values for x and y cordinates.
+ int y=rand()%55;
+    gotoxy(x,y);
+     char ch;
+   int n;
+   again2:
+     n= rand()%26; //letter start point
+   ch=(char)(n+65); //letter Z asci code //for capital letters
+  cout<<ch<<endl;
+   cin>>character;
+  if(ch!=character){
+  cout<<"you did not entered the correct letter!";
+  cout<<"\n"<<"TYPE AGAIN!"<<endl;
+  goto again2;
+ }
+  Sleep(100);//causing time delay
+  }
+   clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout<<elapsed_secs<<"sec"<<endl; //as caused delay of 2 sec
+}
+else if(op==3){ //complexity is time delay.
+  char character;
+        clock_t begin = clock();
+       for(int i=0;i<10;i++){
+ 
+     int x=rand()%100; //random values for x and y cordinates.
+     int y=rand()%55;
+      gotoxy(x,y);
+     char ch;
+  int n;
+ again3:
+     n= rand()%26; //letter start point
+ ch=(char)(n+65); //letter Z asci code //for capital letters
+ cout<<ch<<endl;
+ cin>>character;
+ if(ch!=character){
+  cout<<"you did not entered the correct letter!";
+  cout<<"\n"<<"TYPE AGAIN!"<<endl;
+  goto again3;
+ }
+  Sleep(50);//causing time delay
+  }
+   clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout<<elapsed_secs<<"sec"<<endl; //as caused delay of 2 sec
+     double x=elapsed_secs;
+ 
+ }
+   Sleep(300);
+ system("cls");
+}
+//********************letter part finish***********
+void sttxt(int op){
+ int i;
+ if(op==1){ //can also do random string generator?
+  string s4="I am a good person";
+  string s5="I live in pakistan, KHYBER PAKHTOON KHUAWW";
+  string s6="I LOVE my mother and father! :)";
+  string s1;
+  string s2;
+  string s3;
+  cout<<"TYPE THE FOLLOWING SENTENCES"<<endl;
+  clock_t begin = clock();
+  cout<<s4<<endl;
+  cin>>s1;
+  x:
+  for(i=0;s4[i]!='\0';i++){ //comparing strings
+   for(int j=0;s1[j]!='\0';j++){
+    if(s4[i]==s1[j]){
+     goto txt;
+     
+    }
+    else{
+     cout<<"error detected!"<<endl;
+     cout<<"please type again!"<<endl;
+     cout<<s4<<endl;
+     fflush(stdin);
+     cin>>s1;
+     goto x;
+    }
+   }
+  }
+  txt:
+  cout<<s5<<endl;
+  fflush(stdin);
+  cin>>s2;
+  for(i=0;s5[i]!='\0';i++){ //comparing strings
+   for(int j=0;s2[j]!='\0';j++){
+    if(s5[i]==s2[j]){
+     goto txt2;
+     
+    }
+    else{
+     cout<<"error detected!"<<endl;
+     cout<<"please type again!"<<endl;
+     //cout<<s5<<endl;
+     //fflush(stdin);
+     //cin>>s2;
+     goto txt;
+    }
+   }
+  }
+  txt2:
+  cout<<s6<<endl;
+  fflush(stdin);
+  cin>>s3;
+  for(i=0;s6[i]!='\0';i++){ //comparing strings
+   for(int j=0;s3[j]!='\0';j++){
+    if(s6[i]==s3[j]){
+     goto txt3;//problem, not checking the entire sentence?
+     
+    }
+    else{
+     cout<<"error detected!"<<endl;
+     cout<<"please type again!"<<endl;
+     //cout<<s6<<endl;
+     fflush(stdin);
+     //cin>>s3;
+     goto txt2;
+    }
+   }
+  }
+  fflush(stdin);
+  txt3:
+  clock_t end = clock();
+        double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+        cout<<elapsed_secs<<"sec"<<endl;
+ }
+ else if(op==2){
+ static const string charList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ string s1;
+ /* srand() initialize random number generator */
+ /* time() for get current time */
+ clock_t begin = clock();
+ types1:
+ srand(time(0));
+ string alphanumeric = "";
+ //for(int j=0;j<5;j++){
+ for(int i = 0; i < 5; i++) { //number of strings being generated
+  /* rand() generate random number */
+  alphanumeric += charList [rand() % charList.size()];
+ 
+ cout << "Random Alphanumeric: " << alphanumeric << endl;
+ cin>>s1;
+ if(alphanumeric!=s1){
+  cout<<"string entered is not correct!"<<endl;
+  cout<<"type again!"<<endl;
+     goto types1;
+ }}
+     clock_t end = clock();
+        double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+        cout<<elapsed_secs<<"sec"<<endl;
+ 
+}
+ else if(op==3){ //complexity level increase by adding number in string.
+ static const string charList = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ string s1;
+ /* srand() initialize random number generator */
+ /* time() for get current time */
+ clock_t begin = clock();
+ types2:
+ srand(time(0));
+ string alphanumeric = "";
+ //for(int j=0;j<5;j++){
+ for(int i = 0; i < 5; i++) { //number of strings being generated
+  /* rand() generate random number */
+  alphanumeric += charList [rand() % charList.size()];
+ 
+ cout << "Random Alphanumeric: " << alphanumeric << endl;
+ cin>>s1;
+ if(alphanumeric!=s1){
+  cout<<"string entered is not correct!"<<endl;
+  cout<<"type again!"<<endl;
+     goto types2;
+ }}
+     clock_t end = clock();
+        double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+        cout<<elapsed_secs<<"sec"<<endl;
+        double x=elapsed_secs;
+  
+  
+ }
+ Sleep(300); //time delay
+ system("cls");}
+bool operator >(const infoofplayers &p ){ //to declare winner!
+  for(double i=0;i<10;i++){
+   if(elapsed_time>p.elapsed_time){ //operator overloading
+    return true;
+   }
+   else{
+    return false;
+   }
+  }
+ }
+ 
+//***************txt part finish***************
+//******************winner*****************
+friend ostream & operator <<(ostream &os,const infoofplayers &m);  
+   
+};
+ostream &operator<<(ostream &os,const infoofplayers &m){
+ os<<"Name :"<<m.name<<endl;
+ return os;
+}
+int main(int argc, char **argv){
+ int x;
+ int op;
+ string name;
+ int age;
+ //op=start();
+ int p,i;//players
+ cout<<"enter number of players who want to play"<<endl; //alternative, can make 2 player game.
+ cin>>p;
+ infoofplayers obj[20];
+ infoofplayers temp;
+ for(i=0;i<p;i++){
+  op=obj[i].start();
+  cout<<"enter name"<<endl;
+  cin>>name;
+  cout<<"enter age"<<endl;
+  cin>>age;
+  obj[i].setname(name);
+  
+  obj[i].setage(age);
+  obj[i].display();
+  obj[i].play(op);}
+ for(i=0;i<p;++i){
+ for(int j=i+1;j<p;++j){
+  if(obj[j]>obj[i]){
+   temp=obj[j];
+   obj[j]=obj[i];
+   obj[i]=temp;
+  }
+  
+  
+ }}
+ cout<<"ORDER OF WINNERS!"<<endl;
+ fflush(stdin);
+    for(i=0;i<p;i++){
+     cout<<obj[i]<<endl;
+ }
+
+ 
+}
+
+
